@@ -60,7 +60,7 @@ function App() {
   return (
     <>
       <div className='h-screen flex  '>
-        <Sidebar allboards={allboards} activeBoard={activeBoard} />
+        <Sidebar allboards={allboards} activeBoard={activeBoard} setActiveBoard={setActiveBoard} />
         <div className='flex flex-col border-red-500 border-2 w-4/5'>
           <Navbar activeBoard={activeBoard} />
           <MainBoard tasks={filteredTasks} />
