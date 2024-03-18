@@ -9,6 +9,7 @@ import Navbar from './Navbar';
 import AddTaskPopUp from './AddTaskPopUp';
 import PopUpCreateNewBoard from './PopUpCreateNewBoard';
 
+
 function App() {
 
   const [tasks, setTasks] = useState([]); // state to get all tasks from the api
@@ -16,6 +17,9 @@ function App() {
   const [activeBoard, setActiveBoard] = useState('') // state to get the active board
   const [showPopUpTasks, setShowPopUpTasks] = useState(false) // state to show the Tasks which are opend
   const [showPopUpBoard, setShowPopUpBoard] = useState(false) // state to show when a new board will be created
+  const [selectedTask, setSelectedTask] = useState(null)// set useState for task
+  const [showTaskPopup, setShowTaskPopup] = useState(false); // state for showing taskPopUp
+
 
 
 
@@ -56,27 +60,31 @@ function App() {
   }
 
 
-
-
-
-
-
-
   // create an Array to filter tasks which are in the activeBoard
   const filteredTasks = tasks.filter((task) => task.board === activeBoard)
 
 
 
+  // create an Function to get the selctedt task
+  function clickTask(task) {
+    setSelectedTask(task)
+    setShowTaskPopup(true);
+  }
+
+
+
   return (
     <>
-      <div className='h-screen flex  '>
-        <Sidebar allboards={allboards} activeBoard={activeBoard} setActiveBoard={setActiveBoard} handleclickPopUpBoard={handleclickPopUpBoard} />
-        <div className='flex flex-col border-red-500 border-2 w-4/5'>
-          <Navbar activeBoard={activeBoard} handleclickPopUpAddTask={handleclickPopUpAddTask} />
-          <MainBoard tasks={filteredTasks} />
+      <div>
+        <div className='h-screen flex  '>
+          <Sidebar allboards={allboards} activeBoard={activeBoard} setActiveBoard={setActiveBoard} handleclickPopUpBoard={handleclickPopUpBoard} />
+          <div className='flex flex-col border-red-500 border-2 w-4/5'>
+            <Navbar activeBoard={activeBoard} handleclickPopUpAddTask={handleclickPopUpAddTask} />
+            <MainBoard tasks={filteredTasks} clickTask={clickTask} />
+          </div>
+          {showPopUpTasks && <AddTaskPopUp handleclickPopUpAddTask={handleclickPopUpAddTask} activeBoard={activeBoard} fetchTasks={fetchTasks} />}
+          {showPopUpBoard && <PopUpCreateNewBoard handleclickPopUpBoard={handleclickPopUpBoard} fetchTasks={fetchTasks} />}
         </div>
-        {showPopUpTasks && <AddTaskPopUp handleclickPopUpAddTask={handleclickPopUpAddTask} />}
-        {showPopUpBoard && <PopUpCreateNewBoard handleclickPopUpBoard={handleclickPopUpBoard} />}
       </div>
     </>
   );
