@@ -22,11 +22,12 @@ function App() {
 
 
 
+  // Function to fetch tasks data from the server, set the tasks state, extract and set unique board names, set the active board state, and provide debug outputs for each step.
 
   const fetchTasks = async () => {
     console.log('radi')
     try {
-      const response = await axios.get('https://kanban-backend-server.onrender.com/tasks');
+      const response = await axios.get('https://backend-kanban-davidino.onrender.com/tasks');
       console.log(response, 'Blok')
       const data = response.data;
       setTasks(data)
@@ -80,6 +81,7 @@ function App() {
           <Sidebar allboards={allboards} activeBoard={activeBoard} setActiveBoard={setActiveBoard} handleclickPopUpBoard={handleclickPopUpBoard} />
           <div className='flex flex-col border-red-500 border-2 w-4/5'>
             <Navbar activeBoard={activeBoard} handleclickPopUpAddTask={handleclickPopUpAddTask} />
+
             <MainBoard tasks={filteredTasks} clickTask={clickTask} />
           </div>
           {showPopUpTasks && <AddTaskPopUp handleclickPopUpAddTask={handleclickPopUpAddTask} activeBoard={activeBoard} fetchTasks={fetchTasks} />}

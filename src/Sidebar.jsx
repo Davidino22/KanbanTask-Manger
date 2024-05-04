@@ -6,12 +6,22 @@ export default function Sidebar(props) {
 
 
 
-
   return (
-    <div className='h-screen bg-[#2c2c38] w-1/5 text-white'>
-      <h1 className='text-xl'>Platforms</h1>
-      {allboards.map((board) => <p onClick={() => setActiveBoard(board)} key={board} className={board === activeBoard ? 'text-red-500' : null}>{board}</p>)}
-      <button className='p-4 bg-red-500' onClick={() => handleclickPopUpBoard()}>Add Board</button>
+    <div className='h-screen bg-gray-800 w-1/5 text-white border-r border-gray-300 flex flex-col gap-8 px-5 py-5 pointer-events-auto'>
+      <h1 className='text-xl'>All boards ({allboards.length})</h1>
+      {allboards.map((board) => (
+        <p
+          key={board}
+          onClick={() => setActiveBoard(board)}
+          className={board === activeBoard ? 'bg-purple-600 p-2 rounded' : 'text-white'}
+
+        >
+          {board}
+        </p>
+      ))}
+      <button className='px-4 py-2 bg-purple-600 rounded-lg' onClick={() => handleclickPopUpBoard()}>
+        Create new board
+      </button>
     </div>
-  )
+  );
 }

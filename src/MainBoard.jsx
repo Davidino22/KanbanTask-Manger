@@ -41,10 +41,10 @@ export default function MainBoard(props) {
   return (
     <>
       {showChangeStatusPopUp && <PopUpTask selectedTask={selectedTask} setSelectedTask={setSelectedTask} showChangeStatusPopUp={showChangeStatusPopUp} setShowChangeStatusPopUp={setShowChangeStatusPopUp} />}
-      <div className='flex-1 bg-[#21212d] text-white'>
-        <div className='flex justify-between text-2xl'>
-          <div>
-            <p>To Do {todoCount}</p>
+      <div className='flex-1 bg-[#21212d] text-white '>
+        <div className='flex justify-between text-2xl '>
+          <div className='border border-gray-400 flex flex-col items-center '>
+            <p  >To Do {todoCount}</p>
             {tasks.map((task) => (
               task.status === 'todo' ? (
                 <div key={task.id} className='w-64 m-4 py-6 px-4 rounded-lg bg-[#2b2c37]' onClick={() => handleTaskClick(task)}>
@@ -53,8 +53,8 @@ export default function MainBoard(props) {
                 </div>
               ) : null))}
           </div>
-          <div>
-            <p>Doing{doingCount}</p>
+          <div className='border border-gray-400 flex flex-col items-center'>
+            <p >Doing{doingCount}</p>
             {tasks.map((task) => (
               task.status === 'doing' ? (
                 <div key={task.id} className='w-64 m-4 py-6 px-4 rounded-lg bg-[#2b2c37]' onClick={() => handleTaskClick(task)}>
@@ -63,8 +63,8 @@ export default function MainBoard(props) {
                 </div>
               ) : null))}
           </div>
-          <div>
-            <p>Done{doneCount}</p>
+          <div className='border border-gray-400 flex flex-col items-center'>
+            <p >Done{doneCount}</p>
             {tasks.map((task) => (
               task.status === 'done' ? (
                 <div key={task.id} className='w-64 m-4 py-6 px-4 rounded-lg bg-[#2b2c37]' onClick={() => handleTaskClick(task)}>
