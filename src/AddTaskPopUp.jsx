@@ -13,7 +13,7 @@ export default function AddTaskPopUp(props) {
 
   async function addTask() {
     try {
-      const response = await axios.post('https://kanban-backend-server.onrender.com/tasks', {
+      const response = await axios.post('https://backend-kanban-davidino.onrender.com/tasks', {
         title: title,
         description: description,
         board: activeBoard,
@@ -40,7 +40,7 @@ export default function AddTaskPopUp(props) {
 
 
   return (
-    <div className='w-96 h-42 bg-red-500'>
+    <div className='w-64 h-42  bg-[#2b2c37] fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2'>
       <div>
         <h1>Add New Task</h1>
       </div>
@@ -58,6 +58,7 @@ export default function AddTaskPopUp(props) {
             <option value="done">Done</option>
           </select>
           <button className='' onClick={addTask}>Create Task</button>
+
         </div>
       </div>
 
