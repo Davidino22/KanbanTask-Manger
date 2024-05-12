@@ -80,7 +80,7 @@ function App() {
         <div className='h-screen flex  '>
           <Sidebar allboards={allboards} activeBoard={activeBoard} setActiveBoard={setActiveBoard} handleclickPopUpBoard={handleclickPopUpBoard} />
           <div className='flex flex-col border-grey-200 border-2 w-4/5'>
-            <Navbar activeBoard={activeBoard} handleclickPopUpAddTask={handleclickPopUpAddTask} />
+            <Navbar activeBoard={activeBoard} handleclickPopUpAddTask={handleclickPopUpAddTask} tasks={tasks} fetchTasks={fetchTasks} />
 
             <MainBoard tasks={filteredTasks} clickTask={clickTask} fetchTasks={fetchTasks} />
           </div>

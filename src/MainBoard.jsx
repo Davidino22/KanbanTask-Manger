@@ -9,10 +9,9 @@ import PopUpTask from './PopUpTask';
 export default function MainBoard(props) {
 
   const { tasks, fetchTasks } = props;
-  const [todoCount, setTodoCount] = useState(0);
-  const [doingCount, setDoingCount] = useState(0);
-  const [doneCount, setDoneCount] = useState(0);
+
   const [selectedTask, setSelectedTask] = useState(null);
+  const [editing, setEditing] = useState(false)
 
 
 
@@ -25,17 +24,14 @@ export default function MainBoard(props) {
 
 
   // Update task counts whenever tasks change
-  useEffect(() => {
-    // Calculate counts based on tasks array
-    const todoTasks = tasks.filter(task => task.status === 'todo');
-    const doingTasks = tasks.filter(task => task.status === 'doing');
-    const doneTasks = tasks.filter(task => task.status === 'done');
 
-    // Update state variables
-    setTodoCount(todoTasks.length);
-    setDoingCount(doingTasks.length);
-    setDoneCount(doneTasks.length);
-  }, [tasks]);
+  // Calculate counts based on tasks array
+  const todoTasks = tasks.filter(task => task.status === 'todo');
+  const doingTasks = tasks.filter(task => task.status === 'doing');
+  const doneTasks = tasks.filter(task => task.status === 'done');
+
+
+
 
 
   return (
@@ -44,7 +40,7 @@ export default function MainBoard(props) {
       <div className='flex-1 bg-[#21212d]  '>
         <div className='flex justify-around text-2xl mt-12'>
           <div className=' flex flex-col items-center '>
-            <p className='text-[#808ca0]' >To Do {todoCount}</p>
+            <p className='text-[#808ca0]' >To Do {todoTasks.length} </p>
             {tasks.map((task) => (
               task.status === 'todo' ? (
                 <div key={task.id} className='w-64 m-4 py-6 px-4 rounded-lg bg-[#2b2c37] text-white' onClick={() => handleTaskClick(task)}>
@@ -54,7 +50,7 @@ export default function MainBoard(props) {
               ) : null))}
           </div>
           <div className=' flex flex-col items-center'>
-            <p className='text-[#808ca0]'>Doing{doingCount}</p>
+            <p className='text-[#808ca0]'>Doing{doingTasks.length}</p>
             {tasks.map((task) => (
               task.status === 'doing' ? (
                 <div key={task.id} className='w-64 m-4 py-6 px-4 rounded-lg bg-[#2b2c37] text-white' onClick={() => handleTaskClick(task)}>
@@ -64,7 +60,7 @@ export default function MainBoard(props) {
               ) : null))}
           </div>
           <div className=' flex flex-col items-center'>
-            <p className='text-[#808ca0]' >Done{doneCount}</p>
+            <p className='text-[#808ca0]' >Done{doneTasks.length}</p>
             {tasks.map((task) => (
               task.status === 'done' ? (
                 <div key={task.id} className='w-64 m-4 py-6 px-4 rounded-lg bg-[#2b2c37] text-white' onClick={() => handleTaskClick(task)}>

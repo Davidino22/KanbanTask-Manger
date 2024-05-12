@@ -41,7 +41,7 @@ export default function PopUpCreateNewBoard(props) {
           <div>
             <label>new Board</label>
 
-            <input onChange={(e) => setNewBoard(e.target.value)}></input>
+            <input onChange={(e) => setNewBoard(e.target.value)} className="text-black"></input>
           </div>
           <button className='' onClick={addBoard}>Create Board</button>
         </div>
