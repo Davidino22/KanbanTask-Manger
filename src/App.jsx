@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 
 import axios from 'axios';
@@ -19,6 +19,27 @@ function App() {
   const [showPopUpBoard, setShowPopUpBoard] = useState(false) // state to show when a new board will be created
   const [selectedTask, setSelectedTask] = useState(null)// set useState for task
   const [showTaskPopup, setShowTaskPopup] = useState(false); // state for showing taskPopUp
+  const [lightMode, setLightMode] = useState(false) //state for light Mode
+
+  const refelement = useRef();
+
+
+
+  useEffect(() => {
+    const handler = (event) => {
+      if (refelement.current && !refelement.current.contains(event.target)) {
+        setSelectedTask(null);
+        setShowPopUpBoard(false);
+        setShowTaskPopup(false);
+      }
+    };
+
+    document.addEventListener("click", handler);
+    return () => {
+      document.removeEventListener("click", handler);
+    };
+  }, []);
+
 
 
 
@@ -74,18 +95,28 @@ function App() {
 
 
 
+  // function to create the toggle mode
+
+  function toggle() {
+    setLightMode(!lightMode)
+  }
+
+
+
+
   return (
     <>
-      <div>
+      <div ref={refelement} >
         <div className='h-screen flex  '>
-          <Sidebar allboards={allboards} activeBoard={activeBoard} setActiveBoard={setActiveBoard} handleclickPopUpBoard={handleclickPopUpBoard} />
+          <Sidebar allboards={allboards} activeBoard={activeBoard} setActiveBoard={setActiveBoard} handleclickPopUpBoard={handleclickPopUpBoard} toggle={toggle} lightMode={lightMode} />
           <div className='flex flex-col border-grey-200 border-2 w-4/5'>
-            <Navbar activeBoard={activeBoard} handleclickPopUpAddTask={handleclickPopUpAddTask} tasks={tasks} fetchTasks={fetchTasks} />
+            <Navbar activeBoard={activeBoard} handleclickPopUpAddTask={handleclickPopUpAddTask} tasks={tasks} fetchTasks={fetchTasks} lightMode={lightMode} />
 
-            <MainBoard tasks={filteredTasks} clickTask={clickTask} fetchTasks={fetchTasks} />
+            <MainBoard tasks={filteredTasks} clickTask={clickTask} fetchTasks={fetchTasks} lightMode={lightMode} />
           </div>
           {showPopUpTasks && <AddTaskPopUp handleclickPopUpAddTask={handleclickPopUpAddTask} activeBoard={activeBoard} fetchTasks={fetchTasks} />}
           {showPopUpBoard && <PopUpCreateNewBoard handleclickPopUpBoard={handleclickPopUpBoard} fetchTasks={fetchTasks} />}
+
         </div>
       </div>
     </>
