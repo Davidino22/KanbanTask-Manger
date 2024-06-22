@@ -5,7 +5,7 @@ import axios from 'axios'
 
 export default function (props) {
 
-  const { task, fetchTasks, setSelectedTask, setEditing, lightMode } = props
+  const { task, fetchTasks, setSelectedTask, setEditing, lightMode, editing } = props
 
   const [title, setTitle] = useState(task.title)
   const [description, setDescription] = useState(task.description)
@@ -51,31 +51,31 @@ export default function (props) {
 
 
   return (
-    <div className={`w-96 h-3/5 ${lightMode ? 'text-black bg-white' : 'text-white bg-[#2b2c37]'
+    <div className={`popup w-96 ${lightMode ? 'text-black bg-white' : 'text-white bg-[#2b2c37]'
       } fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex-col flex p-8 rounded-lg`}>
-      <h1 className='text-2xl pb-4'>Edit Task</h1>
-      <div className='pb-4'>
-        <p>Ttitle</p>
-        <input onChange={((e) => setTitle(e.target.value))} value={title} className='text-black w-full' />
+      <h1 className='popup text-2xl pb-4'>Edit Task</h1>
+      <div className='popup pb-4'>
+        <p className='popup'>Ttitle</p>
+        <input onChange={((e) => setTitle(e.target.value))} value={title} className={`popup ${lightMode ? 'bg-white' : 'bg-[#2b2c37]'} ${lightMode ? 'text-black' : 'text-white'} text-[#7c889b] bg-[#2b2c37]  border border-2 border-[#7c889b]`} />
       </div>
 
-      <div className='pb-4'>
-        <p>Description</p>
+      <div className='pb-4 popup'>
+        <p className='popup'>Description</p>
 
 
-        <textarea onChange={(e) => setDescription(e.target.value)} value={description} className="text-black w-full"></textarea>
+        <textarea onChange={(e) => setDescription(e.target.value)} value={description} className={`popup ${lightMode ? 'bg-white' : 'bg-[#2b2c37]'} ${lightMode ? 'text-black' : 'text-white'} text-[#7c889b] bg-[#2b2c37]  border border-2 border-[#7c889b]`} ></textarea>
       </div>
 
-      <div className='pb-4'>
+      <div className='pb-4 popup'>
 
-        <label htmlFor="status" >Status</label>
-        <select id="status" className='text-black w-full' value={status} onChange={(e) => setStatus(e.target.value)}  >
+        <label className='popup' htmlFor="status" >Status</label>
+        <select id="status" className={` popup ${lightMode ? 'bg-white' : 'bg-[#2b2c37]'} ${lightMode ? 'text-black' : 'text-white'} text-[#7c889b] bg-[#2b2c37]  border border-2 border-[#7c889b]`} value={status} onChange={(e) => setStatus(e.target.value)}  >
           <option value="todo">To Do</option>
           <option value="doing">Doing</option>
           <option value="done">Done</option>
         </select>
       </div>
-      <button className="rounded bg-[#635fc7] p-2" onClick={editTask}>Save Changes</button>
+      <button className=" popup rounded bg-[#635fc7] p-2 rounded rounded-lg" onClick={editTask}>Save Changes</button>
 
       {/* offclick for exit button  */}
     </div >

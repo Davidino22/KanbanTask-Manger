@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, } from 'react';
 
 
 import axios from 'axios'
@@ -7,6 +7,9 @@ export default function PopUpTask(props) {
   const { selectedTask, fetchTasks, setSelectedTask, handleEditClick, lightMode } = props;
   const [newStatus, setNewStatus] = useState(selectedTask.status);
   const [isOpen, setIsOpen] = useState(false)
+
+
+
 
 
 
@@ -77,31 +80,29 @@ export default function PopUpTask(props) {
 
 
   return (
-    <div className={`popup w-1/3 h-52 ${lightMode ? 'bg-white' : 'bg-[#2b2c37]'} ${lightMode ? 'text-black' : 'text-white'}  fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 rounded-lg `}>
-      <div className="popup flex flex-col p-4 ">
-        <div className='popup flex flex-row justify-between  '>
-          <p className='popup text-2xl'> {selectedTask.title}</p>
-          <button onClick={() => setIsOpen(!isOpen)} className='popup'> <img src="public\assets\icon-vertical-ellipsis.svg" className='popup' />
-            {isOpen ? <div className={`popup h-24 justify-center w-32 ${lightMode ? 'text-black' : 'text-white'} ${lightMode ? 'bg-white' : 'bg-[#2b2c37]'} fixed s -translate-y-1/2 -translate-x-1/2 rounded-lg flex flex-col bottom-0.2 `}>
-              <button onClick={editTask} className='popup'>Edit</button>
-              <button className='popup text-red-500' onClick={deleteTask}>Delete</button>
-            </div> : null}
-
-
-
-          </button>
-
+    <div className={`popup w-1/3 ${lightMode ? 'bg-white' : 'bg-[#2b2c37]'} ${lightMode ? 'text-black' : 'text-white'} fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 rounded-lg rounded-lg`}>
+      <div className="flex flex-col p-8 popup">
+        <div className='flex flex-row justify-between popup'>
+          <p className='text-2xl popup'>{selectedTask.title}</p>
+          <div className='popup cursor-pointer' onClick={() => setIsOpen(!isOpen)}>
+            <img className='popup ' src="public/assets/icon-vertical-ellipsis.svg" />
+            {isOpen ? (
+              <div className={`popup h-24 justify-center w-32 ${lightMode ? 'text-black' : 'text-white'} ${lightMode ? 'bg-white' : 'bg-[#2b2c37]'} fixed -translate-y-1/2 -translate-x-1/2 rounded-lg flex flex-col bottom-0.2`}>
+                <button className='popup' onClick={editTask}>Edit</button>
+                <button className='text-red-500 popup' onClick={deleteTask}>Delete</button>
+              </div>
+            ) : null}
+          </div>
         </div>
-        <p className='popup text-[#7c889b] mt-4'> {selectedTask.description}</p>
-        <label className='popup mt-6' htmlFor="status">Curent Status</label>
-        <select id="status" className='popup w-8/12 text-[#7c889b] border-[#7c889b] bg-transparent' value={newStatus} onChange={handleChangeStatus}>
-          <option value="todo">To Do</option>
-          <option value="doing">Doing</option>
-          <option value="done">Done</option>
+        <p className='text-[#7c889b] mt-4 popup'>{selectedTask.description}</p>
+        <label className='mt-6 popup' htmlFor="status">Current Status</label>
+        <select id="status" className='popup w-5/6 text-[#7c889b] border border-2 border-[#7c889b] bg-transparent' value={newStatus} onChange={handleChangeStatus}>
+          <option value="todo" className='popup text-[#7c889b] bg-[#2b2c37]'>To Do</option>
+          <option value="doing" className=' popup text-[#7c889b] bg-[#2b2c37]'>Doing</option>
+          <option value="done" className=' popup text-[#7c889b] bg-[#2b2c37]'>Done</option>
         </select>
-        <button className='bg-[#635ec5] popup ' onClick={changeTaskStatus}>Change</button>
-        <div >
-          <button onClick={() => setSelectedTask(null)} className='popup'>close</button>
+        <div className='flex justify-center popup'>
+          <button className='bg-[#635ec5] w-40 rounded mt-4 p-2 popup' onClick={changeTaskStatus}>Change</button>
         </div>
       </div>
     </div>

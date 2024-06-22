@@ -9,10 +9,10 @@ import PopUpTask from './PopUpTask';
 
 export default function MainBoard(props) {
 
-  const { tasks, fetchTasks, lightMode, } = props;
+  const { tasks, fetchTasks, lightMode, selectedTask, setSelectedTask, editing, setEditing } = props;
 
-  const [selectedTask, setSelectedTask] = useState(null);
-  const [editing, setEditing] = useState(false)
+
+
 
 
 
@@ -22,7 +22,7 @@ export default function MainBoard(props) {
 
   };
 
-  // selected task muss außerhalb sein im main
+
 
   // Function to handle edit button click
   function handleEditClick() {
@@ -50,7 +50,7 @@ export default function MainBoard(props) {
 
         />
       )}
-      {editing && (
+      {selectedTask && editing && (
         <PupUpEdit
           selectedTask={selectedTask}
           setSelectedTask={setSelectedTask}
@@ -58,6 +58,8 @@ export default function MainBoard(props) {
           setEditing={setEditing}
           task={selectedTask}
           lightMode={lightMode}
+          editing={editing}
+
 
         />
       )}

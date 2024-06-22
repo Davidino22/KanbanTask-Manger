@@ -20,24 +20,29 @@ function App() {
   const [selectedTask, setSelectedTask] = useState(null)// set useState for task
   const [showTaskPopup, setShowTaskPopup] = useState(false); // state for showing taskPopUp
   const [lightMode, setLightMode] = useState(false) //state for light Mode
+  const [editing, setEditing] = useState(false) // editing state
+  const [isOpen, setIsOpen] = useState(false) // isOpen State
 
   const refelement = useRef();
 
 
 
   useEffect(() => {
-    const handler = (event) => {
-      if (refelement.current && !refelement.current.contains(event.target)) {
-        setSelectedTask(null);
-        setShowPopUpBoard(false);
-        setShowTaskPopup(false);
-      }
-    };
+    const divElement = refelement.current;
+    console.log(divElement); // logs <div>I'm an element</div>
+    divElement.addEventListener("click", function (e) {
+      console.log('radi div davidino hoooo', e.target)
+      console.dir(e.target.classList)
+      if (!e.target.classList.contains('popup')) {
+        console.log('if statement')
 
-    document.addEventListener("click", handler);
-    return () => {
-      document.removeEventListener("click", handler);
-    };
+        setShowPopUpBoard(false);
+        setShowTaskPopup(false)
+        setSelectedTask(null);
+
+        setIsOpen(false)
+      }
+    });
   }, []);
 
 
@@ -110,9 +115,9 @@ function App() {
         <div className='h-screen flex  '>
           <Sidebar allboards={allboards} activeBoard={activeBoard} setActiveBoard={setActiveBoard} handleclickPopUpBoard={handleclickPopUpBoard} toggle={toggle} lightMode={lightMode} />
           <div className='flex flex-col border-grey-200 border-2 w-4/5'>
-            <Navbar activeBoard={activeBoard} handleclickPopUpAddTask={handleclickPopUpAddTask} tasks={tasks} fetchTasks={fetchTasks} lightMode={lightMode} />
+            <Navbar activeBoard={activeBoard} handleclickPopUpAddTask={handleclickPopUpAddTask} tasks={tasks} fetchTasks={fetchTasks} lightMode={lightMode} isOpen={isOpen} setIsOpen={setIsOpen} />
 
-            <MainBoard tasks={filteredTasks} clickTask={clickTask} fetchTasks={fetchTasks} lightMode={lightMode} />
+            <MainBoard tasks={filteredTasks} clickTask={clickTask} fetchTasks={fetchTasks} lightMode={lightMode} selectedTask={selectedTask} setSelectedTask={setSelectedTask} editing={editing} setEditing={setEditing} />
           </div>
           {showPopUpTasks && <AddTaskPopUp handleclickPopUpAddTask={handleclickPopUpAddTask} activeBoard={activeBoard} fetchTasks={fetchTasks} />}
           {showPopUpBoard && <PopUpCreateNewBoard handleclickPopUpBoard={handleclickPopUpBoard} fetchTasks={fetchTasks} />}
