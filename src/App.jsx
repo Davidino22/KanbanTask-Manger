@@ -39,6 +39,7 @@ function App() {
         setShowPopUpBoard(false);
         setShowTaskPopup(false)
         setSelectedTask(null);
+        setEditing(false);
 
         setIsOpen(false)
       }
@@ -114,7 +115,7 @@ function App() {
       <div ref={refelement} >
         <div className='h-screen flex  '>
           <Sidebar allboards={allboards} activeBoard={activeBoard} setActiveBoard={setActiveBoard} handleclickPopUpBoard={handleclickPopUpBoard} toggle={toggle} lightMode={lightMode} />
-          <div className='flex flex-col border-grey-200 border-2 w-4/5'>
+          <div className='flex flex-col w-4/5'>
             <Navbar activeBoard={activeBoard} handleclickPopUpAddTask={handleclickPopUpAddTask} tasks={tasks} fetchTasks={fetchTasks} lightMode={lightMode} isOpen={isOpen} setIsOpen={setIsOpen} />
 
             <MainBoard tasks={filteredTasks} clickTask={clickTask} fetchTasks={fetchTasks} lightMode={lightMode} selectedTask={selectedTask} setSelectedTask={setSelectedTask} editing={editing} setEditing={setEditing} />

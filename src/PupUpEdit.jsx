@@ -55,27 +55,27 @@ export default function (props) {
       } fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex-col flex p-8 rounded-lg`}>
       <h1 className='popup text-2xl pb-4'>Edit Task</h1>
       <div className='popup pb-4'>
-        <p className='popup'>Ttitle</p>
-        <input onChange={((e) => setTitle(e.target.value))} value={title} className={`popup ${lightMode ? 'bg-white' : 'bg-[#2b2c37]'} ${lightMode ? 'text-black' : 'text-white'} text-[#7c889b] bg-[#2b2c37]  border border-2 border-[#7c889b]`} />
+        <p className='popup'>Title</p>
+        <input onChange={((e) => setTitle(e.target.value))} value={title} className={`popup ${lightMode ? 'bg-white text-black' : 'bg-[#2b2c37] text-white'} w-full p-2 border border-1 border-[#7c889b]`} autoFocus />
       </div>
 
-      <div className='pb-4 popup'>
+      <div className=' popup'>
         <p className='popup'>Description</p>
 
 
-        <textarea onChange={(e) => setDescription(e.target.value)} value={description} className={`popup ${lightMode ? 'bg-white' : 'bg-[#2b2c37]'} ${lightMode ? 'text-black' : 'text-white'} text-[#7c889b] bg-[#2b2c37]  border border-2 border-[#7c889b]`} ></textarea>
+        <textarea onChange={(e) => setDescription(e.target.value)} value={description} className={`popup ${lightMode ? 'bg-white text-black' : 'bg-[#2b2c37] text-white '} p-2 w-full  border border-1 border-[#7c889b]`} ></textarea>
       </div>
 
-      <div className='pb-4 popup'>
+      <div className=' popup'>
 
         <label className='popup' htmlFor="status" >Status</label>
-        <select id="status" className={` popup ${lightMode ? 'bg-white' : 'bg-[#2b2c37]'} ${lightMode ? 'text-black' : 'text-white'} text-[#7c889b] bg-[#2b2c37]  border border-2 border-[#7c889b]`} value={status} onChange={(e) => setStatus(e.target.value)}  >
+        <select id="status" className={` popup ${lightMode ? 'bg-white text-black' : 'bg-[#2b2c37] text-white '}  border border-1 p-2 w-full border-[#7c889b] mb-6`} value={status} onChange={(e) => setStatus(e.target.value)}  >
           <option value="todo">To Do</option>
           <option value="doing">Doing</option>
           <option value="done">Done</option>
         </select>
       </div>
-      <button className=" popup rounded bg-[#635fc7] p-2 rounded rounded-lg" onClick={editTask}>Save Changes</button>
+      <button className=" popup rounded bg-[#635fc7] text-white p-2 rounded rounded-lg" onClick={editTask}>Save Changes</button>
 
       {/* offclick for exit button  */}
     </div >

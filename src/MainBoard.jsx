@@ -63,10 +63,10 @@ export default function MainBoard(props) {
 
         />
       )}
-      <div className={`flex-1 ${lightMode ? 'bg-[#f4f7fd]' : 'bg-[#21212d]'} `}>
+      <div className={`flex-1 ${lightMode ? 'bg-[#f4f7fd]  ' : 'bg-[#21212d] '} border-[#515258] `}>
         <div className='flex justify-around text-xl mt-12'>
           <div className=' flex flex-col items-center '>
-            <p className='text-[#808ca0]' >To Do {todoTasks.length} </p>
+            <p className='text-[#808ca0]' >To Do ({todoTasks.length}) </p>
             {tasks.map((task) => (
               task.status === 'todo' ? (
                 <div key={task.id} className={`w-64 m-4 py-6 px-4 rounded-lg ${lightMode ? 'bg-white' : 'bg-[#2b2c37]'} ${lightMode ? 'text-black' : 'text-white'} `} onClick={() => handleTaskClick(task)}>
@@ -77,7 +77,7 @@ export default function MainBoard(props) {
               ) : null))}
           </div>
           <div className=' flex flex-col items-center'>
-            <p className={`${lightMode ? 'text-black' : 'text-[#808ca0]'}`}>Doing{doingTasks.length}</p>
+            <p className={`${lightMode ? 'text-black' : 'text-[#808ca0]'}`}>Doing ({doingTasks.length})</p>
             {tasks.map((task) => (
               task.status === 'doing' ? (
                 <div key={task.id} className={`w-64 m-4 py-6 px-4 rounded-lg ${lightMode ? 'bg-white' : 'bg-[#2b2c37]'} ${lightMode ? 'text-black' : 'text-white'} `} onClick={() => handleTaskClick(task)}>
@@ -87,7 +87,7 @@ export default function MainBoard(props) {
               ) : null))}
           </div>
           <div className=' flex flex-col items-center'>
-            <p className='text-[#808ca0]' >Done{doneTasks.length}</p>
+            <p className='text-[#808ca0]' >Done ({doneTasks.length}) </p>
             {tasks.map((task) => (
               task.status === 'done' ? (
                 <div key={task.id} className={`w-64 m-4 py-6 px-4 rounded-lg ${lightMode ? 'bg-white' : 'bg-[#2b2c37]'} ${lightMode ? 'text-black' : 'text-white'} `} onClick={() => handleTaskClick(task)}>
