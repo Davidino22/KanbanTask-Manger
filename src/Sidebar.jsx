@@ -32,7 +32,7 @@ export default function Sidebar(props) {
             onClick={() => setActiveBoard(board)}
             className={`${board === activeBoard ? ' bg-[#635ec5]   rounded' : 'text-[#808ca0]'} p-2 flex flex-row gap-4`}
           >
-            <img src="public\assets\icon-board.svg" />
+            <img src="\assets\icon-board.svg" />
             {board}
           </div>
         ))
@@ -60,7 +60,7 @@ export default function Sidebar(props) {
               ></div>
             </div>
           </label>
-          <img src="public/assets/icon-light-theme.svg" alt="Light Theme Icon" />
+          <img src="/assets/icon-light-theme.svg" alt="Light Theme Icon" />
         </div>
       </div>
     </div>

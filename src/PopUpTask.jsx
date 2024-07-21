@@ -85,7 +85,7 @@ export default function PopUpTask(props) {
         <div className='flex flex-row justify-between popup'>
           <p className='text-2xl popup'>{selectedTask.title}</p>
           <div className='popup cursor-pointer' onClick={() => setIsOpen(!isOpen)}>
-            <img className='popup ' src="public/assets/icon-vertical-ellipsis.svg" />
+            <img className='popup ' src="/assets/icon-vertical-ellipsis.svg" />
             {isOpen ? (
               <div className={`popup h-24 justify-center w-32 ${lightMode ? 'text-black bg-white' : 'text-white bg-[#2b2c37]'}  fixed -translate-y-1/2 -translate-x-1/2 rounded-lg flex flex-col bottom-0.2`}>
                 <button className='popup' onClick={editTask}>Edit</button>
